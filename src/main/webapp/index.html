@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <title>Start Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="JS/jquery-ui-1.12.1.custom/external/jquery/jquery.js"></script>
+        <script src="JS/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+        
+        <script src="JS/jogo/rei.js"></script>
+        <script src="JS/jogo/tabuleiro.js"></script>
+        <link rel="stylesheet" href="JS/jquery-ui-1.12.1.custom/jquery-ui.css"/>
+        <style>
+            .drag{
+                cursor: move;
+            }
+            
+            td{
+                width: 65px;
+                height: 65px;
+                
+            }
+            .casaPreta {
+                background: #dad55e;
+            }
+            .casaBranca {
+                
+                background: white;
+            }
+            .tabuleiro{
+                border: solid black ;
+            }
+            .ui-droppable-active{
+                background: greenyellow;
+            }
+            .ui-droppable-hover{
+                background: green;
+            }
+        </style>
+    </head>
+    <body>
+        <table id="tabuleiro" class="tabuleiro"></table>
+    </body>
+</html>
