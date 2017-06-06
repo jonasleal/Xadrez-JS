@@ -39,6 +39,6 @@ desenhaCelula = function (_linha, _coluna) {
 colocarPeca = function () {
     jogadorPreto[0] = new Rei(1,0,4);
     jogadorBranco[0] = new Rei(0,7,4);
-    jogadorBranco[1] = new Rei(0,5,4);
+    jogadorBranco[1] = new Peao(0,6,4);
 };
 

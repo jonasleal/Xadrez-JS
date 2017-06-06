@@ -3,11 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-Rei = function (_cor, _linha, _coluna) {
+var Rei = function (_cor, _linha, _coluna) {
     var id = "Rei-";
-    var cor = _cor;
     var imagem = document.createElement("img");
-    if (cor === 0) {
+    if (_cor === 0) {
         id = id + "Branco-" + _linha + "" + _coluna;
         imagem.src = "JS/jogo/pecas/rei-branco.png";
     } else {
@@ -19,7 +18,7 @@ Rei = function (_cor, _linha, _coluna) {
     imagem.height = "50";
     imagem.class = "drag";
 
-    movimento = function (_linha, _coluna) {
+    Rei.movimento = function (_linha, _coluna, _cor) {
         var posicoes = new Array();
         for (var i = -1, pos = 0; i < 2; i++) {
             for (var j = -1; j < 2; j++) {
@@ -27,61 +26,64 @@ Rei = function (_cor, _linha, _coluna) {
                     var linha = (Number(_linha) + i);
                     var coluna = (Number(_coluna) + j);
                     if (linha > -1 && coluna > -1 && linha < 8 && coluna < 8) {
-                        posicoes[pos] = linha + "" + coluna;
-                        pos++;
+                        var indice = linha + "" + coluna;
+                        var casa = $("#" + indice)[0];
+                        if (casa.childElementCount < 1) {
+                            posicoes[pos] = linha + "" + coluna;
+                            pos++;
+                        } else {
+                            var corOutraPeca = casa.firstElementChild.id.split("-")[1];
+                            if (corOutraPeca !== _cor) {
+                                posicoes[pos] = linha + "" + coluna;
+                                pos++;
+
+                            }
+                        }
                     }
 
                 }
             }
         }
         return posicoes;
-    };
+    }
+    ;
 
-    inicioMovimento = function (event, ui) {
+    Rei.inicioMovimento = function (event, ui) {
         var linha = Number(ui.helper.context.parentNode.id.split("")[0]);
         var coluna = Number(ui.helper.context.parentNode.id.split("")[1]);
+        var corPeca = ui.helper.context.id.split("-")[1];
 
-
-        var movimentos = movimento(linha, coluna);
+        var movimentos = Rei.movimento(linha, coluna, corPeca);
 
         for (var i = 0; i < movimentos.length; i++) {
-            $("#" + movimentos[i]).droppable({scope: id, drop: jogada, disable: false});
+            $("#" + movimentos[i]).droppable({scope: id, drop: Rei.jogada});
         }
     };
 
-    jogada = function (event, ui) {
+    Rei.jogada = function (event, ui) {
         var idCasa = event.target.id;
         var idPeca = ui.helper.context.id;
-        var posicaoAnterior = $("#" + idPeca)[0].parentNode.id;
         var casa = $("#" + idCasa)[0];
-
         var removido;
-
+        
         if (casa.childElementCount > 0) {
-            var corPeca = casa.firstChild.id.split("-")[1];
-            
-            if(idPeca.split("-")[1] !== corPeca){
-                removido = casa.removeChild(casa.firstChild);
-            }else{
-                
-            }
+            removido = casa.removeChild(casa.firstChild);
+
         }
 
         $("#" + idPeca).css({top: "8%", left: "10%"});
         $("#" + idCasa).append($("#" + idPeca));
 
-        var linha = Number(posicaoAnterior.split("")[0]);
-        var coluna = Number(posicaoAnterior.split("")[1]);
-        var movimentos = movimento(linha, coluna);
-        for (var i = 0; i < movimentos.length; i++) {
-            $("#" + movimentos[i]).droppable("destroy");
+        var dropaveis = $(".ui-droppable");
+        for (var i = 0; i < dropaveis.length; i++) {
+            $("#" + dropaveis[i].id).droppable("destroy");
         }
 
     };
 
     $("#" + _linha + "" + _coluna).append(imagem);
     $("#" + id).draggable({
-        start: inicioMovimento,
+        start: Rei.inicioMovimento,
         revert: "invalid",
         scope: id});
     $("#" + id).css({top: "8%", left: "10%"});
