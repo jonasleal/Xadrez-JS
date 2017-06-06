@@ -38,6 +38,7 @@ desenhaCelula = function (_linha, _coluna) {
 
 colocarPeca = function () {
     jogadorPreto[0] = new Rei(1,0,4);
+
     jogadorBranco[1] = new Rei(0,7,4);//Rei branco!
     
     jogadorBranco[1] = new Torre(0,7,0);//Torre branca esquerda!
@@ -45,5 +46,9 @@ colocarPeca = function () {
     
     jogadorPreto[1] = new Torre(1,0,7);
     jogadorBranco[0] = new Torre(0,7,7);
+
+    jogadorBranco[0] = new Rei(0,7,4);
+    jogadorBranco[1] = new Peao(0,6,4);
+
 };
 
