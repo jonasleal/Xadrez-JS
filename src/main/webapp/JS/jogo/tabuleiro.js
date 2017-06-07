@@ -42,7 +42,7 @@ colocarPeca = function () {
     cavalo1 = new Cavalo(0,7,1);
     cavalo2 = new Cavalo(0,7,6);
     cavalo3 = new Cavalo(1,0,1);
-    cavalo4 = new Cavalo(1,0,7);
+    cavalo4 = new Cavalo(1,0,6);
     
     for(var i = 0; i < 8; i++){
        jogadorBranco[jogadorBranco.length] = new Peao(0,6,i); 
