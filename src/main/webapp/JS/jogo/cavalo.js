@@ -20,8 +20,8 @@ Cavalo = function (_cor, _linha, _coluna) {
 
 Cavalo.movimento = function (_linha, _coluna, _cor) {
         var posicoes = new Array();
-        for (var i = -1, pos = 0; i < 2; i++) {
-            for (var j = -1; j < 3; j++) {
+        for (var i = -2, pos = 0; i < 3; i++) {
+            for (var j = -2; j < 3; j++) {
                 if (i !== 0 || j !== 0) {
                     var linha = (Number(_linha) + i);
                     var coluna = (Number(_coluna) + j);
