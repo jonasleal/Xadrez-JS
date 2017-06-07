@@ -2,7 +2,7 @@
 //@Izaquias
 
 
-Torre = function (_cor, _linha, _coluna) {
+var Torre = function (_cor, _linha, _coluna) {
     var id = "Torre-";
     var cor = _cor;
     var imagem = document.createElement("img");
@@ -20,37 +20,67 @@ Torre = function (_cor, _linha, _coluna) {
     imagem.height = "50";
     imagem.class = "drag";
     
-        movimento = function (_linha, _coluna) {
+        Torre.movimento = function (_linha, _coluna) {
         var posicoes = new Array();
-        for (var i = -1, pos = 0; i < 2; i++) {
-            for (var j = -1; j < 2; j++) {
+        /*
+            for (var i = -1, pos = 0; i < 8; i++) {
+            for (var j = -1; j < 8; j++) {
                 if (i !== 0 || j !== 0) {
                     var linha = (Number(_linha) + i);
                     var coluna = (Number(_coluna) + j);
-                    if (linha > -1 && coluna > -1 && linha < 8 && coluna < 8) {
+                    
+                    if (linha > -1 &&  linha < 8 ) {
+                        posicoes[pos] = linha + "" + coluna;
+                        pos++;
+                    }else if(coluna > -1 || coluna < 8){
                         posicoes[pos] = linha + "" + coluna;
                         pos++;
                     }
 
                 }
             }
+        }*/
+        
+        for(var i = 8, pos = 8; i > -1; i--){
+            for(var j = 8; j > -1; j--){
+                if(i !== 0 || j !==0){
+                    var linha = (Number(_linha) + i);
+                    var coluna = (Number(_coluna) + j);
+                    
+                    if (linha > -1 ||  coluna === 8 || coluna > -1 && linha === 8 ) {
+                        posicoes[pos] = linha + "" + coluna;
+                        pos++;
+                        
+                    }else if(linha > -1 ||  coluna === 0 || coluna >= -1 && linha !== 8 ){
+                    posicoes[pos] = linha + "" + coluna;
+                    pos--;
+                  }else if(linha > -1 &&  coluna !== 8 || coluna > -1 && linha === 8 ){
+                     posicoes[pos] = linha + "" + coluna;
+                    pos--; 
+                  }
+                }
+            }
         }
+        
+        //for(var i = 8, pos = 0; i > -1; i--){
+            
+        //}
         return posicoes;
     };
 
-    inicioMovimento = function (event, ui) {
+    Torre.inicioMovimento = function (event, ui) {
         var linha = Number(ui.helper.context.parentNode.id.split("")[0]);
         var coluna = Number(ui.helper.context.parentNode.id.split("")[1]);
 
 
-        var movimentos = movimento(linha, coluna);
+        var movimentos = Torre.movimento(linha, coluna);
 
         for (var i = 0; i < movimentos.length; i++) {
-            $("#" + movimentos[i]).droppable({scope: id, drop: jogada, disable: false});
+            $("#" + movimentos[i]).droppable({scope: id, drop: Torre.jogada, disable: false});
         }
     };
 
-    jogada = function (event, ui) {
+    Torre.jogada = function (event, ui) {
         var idCasa = event.target.id;
         var idPeca = ui.helper.context.id;
         var posicaoAnterior = $("#" + idPeca)[0].parentNode.id;
@@ -73,7 +103,7 @@ Torre = function (_cor, _linha, _coluna) {
 
         var linha = Number(posicaoAnterior.split("")[0]);
         var coluna = Number(posicaoAnterior.split("")[1]);
-        var movimentos = movimento(linha, coluna);
+        var movimentos = Torre.movimento(linha, coluna);
         for (var i = 0; i < movimentos.length; i++) {
             $("#" + movimentos[i]).droppable("destroy");
         }
@@ -82,7 +112,7 @@ Torre = function (_cor, _linha, _coluna) {
 
     $("#" + _linha + "" + _coluna).append(imagem);
     $("#" + id).draggable({
-        start: inicioMovimento,
+        start: Torre.inicioMovimento,
         revert: "invalid",
         scope: id});
     $("#" + id).css({top: "8%", left: "10%"});
