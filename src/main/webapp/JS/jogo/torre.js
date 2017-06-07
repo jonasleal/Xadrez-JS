@@ -19,52 +19,88 @@ var Torre = function (_cor, _linha, _coluna) {
     imagem.width = "50";
     imagem.height = "50";
     imagem.class = "drag";
-    
-        Torre.movimento = function (_linha, _coluna) {
+
+    Torre.movimento = function (_linha, _coluna) {
         var posicoes = new Array();
-        /*
+
+        //movimento semelhante ao peão
             for (var i = -1, pos = 0; i < 8; i++) {
-            for (var j = -1; j < 8; j++) {
+            for (var j = 0; j < 8; j++) {
                 if (i !== 0 || j !== 0) {
                     var linha = (Number(_linha) + i);
                     var coluna = (Number(_coluna) + j);
                     
                     if (linha > -1 &&  linha < 8 ) {
                         posicoes[pos] = linha + "" + coluna;
-                        pos++;
-                    }else if(coluna > -1 || coluna < 8){
+                        pos--;
+                    }else if(coluna > -1 && coluna < 8){
                         posicoes[pos] = linha + "" + coluna;
+                        pos--;
+                    }
+
+                }
+            }
+        }
+
+        //linhas maiores    
+        for (var i = -1, pos = 0; i < 8; i++) {
+            for (var j = 0; j < 8; j++) {
+                if (i !== 0 || j !== 0) {
+                    var linha = (Number(_linha) - i);
+                    var coluna = (Number(_coluna) - j);//ou +j
+
+                    if (linha > -1 && linha < 8) {
+                        posicoes[pos] = linha + "" + coluna;
+                        pos++;
+                    } else if (coluna > -1 && coluna < 8) {
+                        posicoes[pos] = linha + "" + (coluna + j);
+                        pos++;
+                    } else {
+                        posicoes[pos] = (linha + i) + "" + (coluna);
                         pos++;
                     }
 
                 }
             }
-        }*/
-        
-        for(var i = 8, pos = 8; i > -1; i--){
-            for(var j = 8; j > -1; j--){
-                if(i !== 0 || j !==0){
+        }
+
+
+         //movimeto inverso 
+        for (var i = 8, pos = 0; i > -1; i--) {
+            for (var j = 8, pos = 0; j > -1; j--) {
+                if (i !== 0 || j !== 0) {
                     var linha = (Number(_linha) + i);
                     var coluna = (Number(_coluna) + j);
-                    
-                    if (linha > -1 ||  coluna === 8 || coluna > -1 && linha === 8 ) {
+
+                    if (linha > -1 && linha < 8) {
                         posicoes[pos] = linha + "" + coluna;
                         pos++;
-                        
-                    }else if(linha > -1 ||  coluna === 0 || coluna >= -1 && linha !== 8 ){
-                    posicoes[pos] = linha + "" + coluna;
-                    pos--;
-                  }else if(linha > -1 &&  coluna !== 8 || coluna > -1 && linha === 8 ){
-                     posicoes[pos] = linha + "" + coluna;
-                    pos--; 
-                  }
+                    }else if(coluna > -1 && coluna < 8){
+                        posicoes[pos] = (linha - i) + "" + (coluna + j);
+                        pos++;
+                    }else{
+                        posicoes[pos] = (linha- i) + "" + (coluna - j);
+                        pos++;
+                    }
+
                 }
             }
         }
         
-        //for(var i = 8, pos = 0; i > -1; i--){
-            
-        //}
+        for (var i = 8, pos = 0; i > -1; i--) {
+            for (var j = 8, pos = 0; j > -1; j--) {
+                if (i !== 0 || j !== 0) {
+                    var linha = (Number(_linha) + i);
+                    var coluna = (Number(_coluna) + j);
+                    
+//                    if (linha > -1 && linha < 8) {
+//                        posicoes[pos] = linha + "" + coluna;
+//                        pos++;
+//                    }
+                }
+            }
+        }
+
         return posicoes;
     };
 
@@ -90,11 +126,11 @@ var Torre = function (_cor, _linha, _coluna) {
 
         if (casa.childElementCount > 0) {
             var corPeca = casa.firstChild.id.split("-")[1];
-            
-            if(idPeca.split("-")[1] !== corPeca){
+
+            if (idPeca.split("-")[1] !== corPeca) {
                 removido = casa.removeChild(casa.firstChild);
-            }else{
-                
+            } else {
+
             }
         }
 
