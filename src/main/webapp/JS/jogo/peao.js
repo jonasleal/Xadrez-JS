@@ -30,9 +30,9 @@ Peao = function (_cor, _linha, _coluna) {
         }
         
         for(var i = 0; i > (saltos*-1) ; i--){
-            if(){
+           // if(){
                 
-            }
+            //}
         }
         
         return posicoes;
