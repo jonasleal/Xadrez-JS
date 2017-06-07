@@ -40,5 +40,9 @@ colocarPeca = function () {
     jogadorPreto[0] = new Rei(1,0,4);
     jogadorBranco[0] = new Rei(0,7,4);
     jogadorBranco[1] = new Peao(0,6,4);
+    cavalo1 = new Cavalo(0,7,1);
+    cavalo2 = new Cavalo(0,7,6);
+    cavalo3 = new Cavalo(1,0,1);
+    cavalo4 = new Cavalo(1,0,7);
 };
 
