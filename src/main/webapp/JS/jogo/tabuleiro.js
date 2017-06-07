@@ -37,8 +37,13 @@ desenhaCelula = function (_linha, _coluna) {
 };
 
 colocarPeca = function () {
-    jogadorPreto[0] = new Rei(1,0,4);
+    jogadorPreto[0] = new Rei(1,0,3);
     jogadorBranco[0] = new Rei(0,7,4);
-    jogadorBranco[1] = new Peao(0,6,4);
+    
+    for(var i = 0; i < 8; i++){
+       jogadorBranco[jogadorBranco.length] = new Peao(0,6,i); 
+       jogadorPreto[jogadorPreto.length] = new Peao(1,1,i);
+    
+    }
 };
 
