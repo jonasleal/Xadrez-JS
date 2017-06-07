@@ -41,11 +41,6 @@ Peao = function (_cor, _linha, _coluna) {
         }
 
 
-
-        for (var i = 0; i > (saltos * -1); i--) {
-
-
-
             if (_cor === "Branco") {
                 direcao = -1;
             } else {
@@ -124,5 +119,5 @@ Peao = function (_cor, _linha, _coluna) {
         $("#" + id).css({top: "10%", left: "10%"});
     };
 
-};
+
 
