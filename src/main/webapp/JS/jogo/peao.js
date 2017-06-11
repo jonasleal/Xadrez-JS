@@ -32,8 +32,7 @@ Peao = function (_cor, _linha, _coluna) {
         } else {
             virgem = false;
         }
-
-
+        
         if (virgem) {
             saltos = 2;
         } else {
@@ -96,7 +95,7 @@ Peao = function (_cor, _linha, _coluna) {
             removido = casa.removeChild(casa.firstChild);
         }
 
-        $("#" + idPeca).css({top: "10%", left: "10%"});
+        $("#" + idPeca).css({top: "6%", left: "10%"});
         $("#" + idCasa).append($("#" + idPeca));
 
         virgem = false;
@@ -112,7 +111,6 @@ Peao = function (_cor, _linha, _coluna) {
         start: Peao.inicioMovimento,
         revert: "invalid",
         scope: id});
-    $("#" + id).css({top: "10%", left: "10%"});
+    $("#" + id).css({top: "6%", left: "10%"});
 
 };
-
