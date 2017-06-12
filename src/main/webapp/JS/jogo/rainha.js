@@ -24,34 +24,12 @@ var Rainha = function (_cor, _linha, _coluna) {
 
 
     Rainha.movimento = function (_linha, _coluna, _cor) {
-        
-        var posicoes = new Array();
-        for (var i = -1, pos = 0; i < 2; i++) {
-            for (var j = -1; j < 2; j++) {
-                if (i !== 0 || j !== 0) {
-                    var linha = (Number(_linha) + i);
-                    var coluna = (Number(_coluna) + j);
-                    if (linha > -1 && coluna > -1 && linha < 8 && coluna < 8) {
-                        var indice = linha + "" + coluna;
-                        var casa = $("#" + indice)[0];
-                        if (casa.childElementCount < 1) {
-                            posicoes[pos] = linha + "" + coluna;
-                            pos++;
-                        } else {
-                            var corOutraPeca = casa.firstElementChild.id.split("-")[1];
-                            if (corOutraPeca !== _cor) {
-                                posicoes[pos] = linha + "" + coluna;
-                                pos++;
-
-                            }
-                        }
-                    }
-
-                }
-            }
-        }
-        return posicoes;
-
+       var posicoes = new Array() ;
+       
+       
+       
+       
+       
     };
 
     Rainha.inicioMovimento = function (event, ui) {
