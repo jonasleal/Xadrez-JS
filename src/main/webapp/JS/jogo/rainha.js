@@ -25,7 +25,9 @@ var Rainha = function (_cor, _linha, _coluna) {
 
     Rainha.movimento = function (_linha, _coluna, _cor) {
         var posicoes = new Array();
-
+ 
+        // Metodos de movimentação nas diagonais
+        //================================================================================
         var j = 1;
         var pos = 0;
         for (var i = 1; i < 8; i++) {
@@ -40,9 +42,7 @@ var Rainha = function (_cor, _linha, _coluna) {
                     posicoes[pos] = linha + "" + coluna;
                     pos++;
                 } else {
-
                     var corOutraPeca = casa.firstElementChild.id.split("-")[1];
-
                     if (corOutraPeca === _cor) {
                         break;
                     } else if (corOutraPeca !== _cor) {
@@ -52,10 +52,9 @@ var Rainha = function (_cor, _linha, _coluna) {
                     }
                 }
             }
-
             j++;
         }
-        ;
+        
         j = -1;
         for (var i = 1; i < 8; i++) {
 
@@ -69,12 +68,9 @@ var Rainha = function (_cor, _linha, _coluna) {
                     posicoes[pos] = linha + "" + coluna;
                     pos++;
                 } else {
-
                     var corOutraPeca = casa.firstElementChild.id.split("-")[1];
-
                     if (corOutraPeca === _cor) {
                         break;
-
                     } else if (corOutraPeca !== _cor) {
                         posicoes[pos] = linha + "" + coluna;
                         pos++;
@@ -82,9 +78,9 @@ var Rainha = function (_cor, _linha, _coluna) {
                     }
                 }
             }
-
             j--;
         }
+        
         var i = -1;
         for (var j = 1; j < 8; j++) {
 
@@ -98,21 +94,20 @@ var Rainha = function (_cor, _linha, _coluna) {
                     posicoes[pos] = linha + "" + coluna;
                     pos++;
                 } else {
-
                     var corOutraPeca = casa.firstElementChild.id.split("-")[1];
                     if (corOutraPeca === _cor) {
                         break;
-
-                    } else if (corOutraPeca !== _cor) {
+                    }else if (corOutraPeca !== _cor) {
                         posicoes[pos] = linha + "" + coluna;
                         pos++;
                         break;
                     }
                 }
             }
-
             i--;
         }
+        
+
         var i = -1;
         for (var j = -1; j > -8; j--) {
 
@@ -126,20 +121,126 @@ var Rainha = function (_cor, _linha, _coluna) {
                     posicoes[pos] = linha + "" + coluna;
                     pos++;
                 } else {
-
                     var corOutraPeca = casa.firstElementChild.id.split("-")[1];
                     if (corOutraPeca === _cor) {
                         break;
-                    } else if (corOutraPeca !== _cor) {
+                    }else if (corOutraPeca !== _cor) {
                         posicoes[pos] = linha + "" + coluna;
                         pos++;
                         break;
                     }
                 }
             }
-
             i--;
         }
+        //========================================================================
+        
+        
+        //Movimentos retos
+        //========================================================================
+        //Movimento direita
+        for (var i = 1; i < 8; i++){
+            
+            var linha = (Number(_linha));
+            var coluna = (Number(_coluna) + i);
+            
+            if (linha > -1 && coluna > -1 && linha < 8 && coluna < 8) {
+                var indice = linha +""+ coluna;
+                var casa = $("#"+indice)[0];
+                if(casa.childElementCount < 1){
+                  posicoes[pos] = linha + ""+coluna;
+                  pos++;
+                }else{
+                    var corOutraPeca = casa.firstElementChild.id.split("-")[1];
+                    if(corOutraPeca === _cor){
+                        break;
+                    }else if (corOutraPeca !== _cor){
+                        posicoes[pos] = linha +""+coluna;
+                        pos++;
+                        break;
+                    }
+                }
+            }
+            
+        }
+        //Movimento esquerda
+        for (var i = -1; i > -8; i--){
+            
+            var linha = (Number(_linha));
+            var coluna = (Number(_coluna) + i);
+            
+            if (linha > -1 && coluna > -1 && linha < 8 && coluna < 8) {
+                var indice = linha +""+ coluna;
+                var casa = $("#"+indice)[0];
+                if(casa.childElementCount < 1){
+                  posicoes[pos] = linha + ""+coluna;
+                  pos++;
+                }else{
+                    var corOutraPeca = casa.firstElementChild.id.split("-")[1];
+                    if(corOutraPeca === _cor){
+                        break;
+                    }else if (corOutraPeca !== _cor){
+                        posicoes[pos] = linha +""+coluna;
+                        pos++;
+                        break;
+                    }
+                }
+            }
+            
+        }
+        
+        //Movimento Cima
+        for (var i = -1; i > -8; i--){
+            
+            var linha = (Number(_linha)+ i);
+            var coluna = (Number(_coluna));
+            
+            if (linha > -1 && coluna > -1 && linha < 8 && coluna < 8) {
+                var indice = linha +""+ coluna;
+                var casa = $("#"+indice)[0];
+                if(casa.childElementCount < 1){
+                  posicoes[pos] = linha + ""+coluna;
+                  pos++;
+                }else{
+                    var corOutraPeca = casa.firstElementChild.id.split("-")[1];
+                    if(corOutraPeca === _cor){
+                        break;
+                    }else if (corOutraPeca !== _cor){
+                        posicoes[pos] = linha +""+coluna;
+                        pos++;
+                        break;
+                    }
+                }
+            }
+            
+        }
+        //Movimento Baixo
+        for (var i = 1; i < 8; i++){
+            
+            var linha = (Number(_linha)+ i);
+            var coluna = (Number(_coluna));
+            
+            if (linha > -1 && coluna > -1 && linha < 8 && coluna < 8) {
+                var indice = linha +""+ coluna;
+                var casa = $("#"+indice)[0];
+                if(casa.childElementCount < 1){
+                  posicoes[pos] = linha + ""+coluna;
+                  pos++;
+                }else{
+                    var corOutraPeca = casa.firstElementChild.id.split("-")[1];
+                    if(corOutraPeca === _cor){
+                        break;
+                    }else if (corOutraPeca !== _cor){
+                        posicoes[pos] = linha +""+coluna;
+                        pos++;
+                        break;
+                    }
+                }
+            }
+            
+        }
+        
+        //========================================================================
         return posicoes;
     };
 
