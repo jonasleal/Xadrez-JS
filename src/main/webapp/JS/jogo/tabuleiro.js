@@ -42,8 +42,8 @@ colocarPeca = function () {
 
     jogadorBranco[jogadorBranco.length] = new Rei(0,7,4);//Rei branco!
     
-    jogadorBranco[jogadorBranco.length] = new Rainha(0,7,3);//Rei branco!
-    jogadorPreto[jogadorPreto.length] = new Rainha(1,0,3);//Rei branco!
+    jogadorBranco[jogadorBranco.length] = new Rainha(0,7,3);//Rainha Branca
+    jogadorPreto[jogadorPreto.length] = new Rainha(1,0,3);//Rainha Preta
     
     jogadorBranco[jogadorBranco.length] = new Torre(0,7,0);//Torre branca esquerda!
     jogadorPreto[jogadorPreto.length] = new Torre(1,0,0);//Torre preta na esquerda, se visão for de igual a torre esquerda, baixo a cima!
