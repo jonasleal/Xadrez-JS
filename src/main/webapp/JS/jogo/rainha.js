@@ -25,7 +25,9 @@ var Rainha = function (_cor, _linha, _coluna) {
 
     Rainha.movimento = function (_linha, _coluna, _cor) {
         var posicoes = new Array();
-
+        
+        // Metodos de movimentação nas diagonais
+        //================================================================================
         var j = 1;
         var pos = 0;
         for (var i = 1; i < 8; i++) {
@@ -40,9 +42,7 @@ var Rainha = function (_cor, _linha, _coluna) {
                     posicoes[pos] = linha + "" + coluna;
                     pos++;
                 } else {
-
                     var corOutraPeca = casa.firstElementChild.id.split("-")[1];
-
                     if (corOutraPeca === _cor) {
                         break;
                     } else if (corOutraPeca !== _cor) {
@@ -52,10 +52,9 @@ var Rainha = function (_cor, _linha, _coluna) {
                     }
                 }
             }
-
             j++;
         }
-        ;
+        
         j = -1;
         for (var i = 1; i < 8; i++) {
 
@@ -69,12 +68,9 @@ var Rainha = function (_cor, _linha, _coluna) {
                     posicoes[pos] = linha + "" + coluna;
                     pos++;
                 } else {
-
                     var corOutraPeca = casa.firstElementChild.id.split("-")[1];
-
                     if (corOutraPeca === _cor) {
                         break;
-
                     } else if (corOutraPeca !== _cor) {
                         posicoes[pos] = linha + "" + coluna;
                         pos++;
@@ -82,9 +78,9 @@ var Rainha = function (_cor, _linha, _coluna) {
                     }
                 }
             }
-
             j--;
         }
+        
         var i = -1;
         for (var j = 1; j < 8; j++) {
 
@@ -98,21 +94,19 @@ var Rainha = function (_cor, _linha, _coluna) {
                     posicoes[pos] = linha + "" + coluna;
                     pos++;
                 } else {
-
                     var corOutraPeca = casa.firstElementChild.id.split("-")[1];
                     if (corOutraPeca === _cor) {
                         break;
-
-                    } else if (corOutraPeca !== _cor) {
+                    }else if (corOutraPeca !== _cor) {
                         posicoes[pos] = linha + "" + coluna;
                         pos++;
                         break;
                     }
                 }
             }
-
             i--;
         }
+        
         var i = -1;
         for (var j = -1; j > -8; j--) {
 
@@ -126,20 +120,21 @@ var Rainha = function (_cor, _linha, _coluna) {
                     posicoes[pos] = linha + "" + coluna;
                     pos++;
                 } else {
-
                     var corOutraPeca = casa.firstElementChild.id.split("-")[1];
                     if (corOutraPeca === _cor) {
                         break;
-                    } else if (corOutraPeca !== _cor) {
+                    }else if (corOutraPeca !== _cor) {
                         posicoes[pos] = linha + "" + coluna;
                         pos++;
                         break;
                     }
                 }
             }
-
             i--;
         }
+        //========================================================================
+        
+        
         return posicoes;
     };
 
