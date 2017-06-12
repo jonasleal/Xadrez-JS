@@ -71,7 +71,7 @@ var Rei = function (_cor, _linha, _coluna) {
 
         }
 
-        $("#" + idPeca).css({top: "8%", left: "10%"});
+        $("#" + idPeca).css({top: "3%", left: "10%"});
         $("#" + idCasa).append($("#" + idPeca));
 
         var dropaveis = $(".ui-droppable");
@@ -86,9 +86,6 @@ var Rei = function (_cor, _linha, _coluna) {
         start: Rei.inicioMovimento,
         revert: "invalid",
         scope: id});
-    $("#" + id).css({top: "8%", left: "10%"});
-
-
+    $("#" + id).css({top: "3%", left: "10%"});
 
 };
-
