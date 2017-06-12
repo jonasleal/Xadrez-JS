@@ -23,17 +23,119 @@ var Rainha = function (_cor, _linha, _coluna) {
     imagem.class = "drag";
 
 
-    Rainha.movimento = function (_linha, _coluna, _cor) {
-       var posicoes = new Array() ;
-       
-       
-       
-       
-       
+    Rainha.movimento = function (_linha, _coluna,_cor) {
+       var posicoes = new Array();
+ 
+        var j = 1;
+        var pos = 0;
+        for (var i = 1; i < 8; i++){
+            
+            var linha = (Number(_linha) + i);
+            var coluna = (Number(_coluna) + j);
+            
+            if (linha > 0 && coluna > 0 && linha < 8 && coluna < 8) {
+                       var indice = linha + "" + coluna;
+                        var casa = $("#" + indice)[0];
+                        if (casa.childElementCount < 1) {
+                            posicoes[pos] = linha + "" + coluna;
+                            pos++;
+                        } else {
+                            
+                            var corOutraPeca = casa.firstElementChild.id.split("-")[1];
+                            console.log(corOutraPeca)
+                            console.log(_cor)
+                            if (corOutraPeca !== _cor) {
+                                posicoes[pos] = linha + "" + coluna;
+                                pos++;
+
+                            }
+                        }
+                    }
+            
+            j++;
+        }
+        ;
+        j = -1;
+        for (var i = 1; i < 8 ; i++){
+            
+            var linha = (Number(_linha) + i);
+            var coluna = (Number(_coluna) + j);
+            
+            if (linha > 0 && coluna > -1 && linha < 8 && coluna < 8) {
+                       var indice = linha + "" + coluna;
+                        var casa = $("#" + indice)[0];
+                        if (casa.childElementCount < 1) {
+                            posicoes[pos] = linha + "" + coluna;
+                            pos++;
+                        } else {
+                            
+                            var corOutraPeca = casa.firstElementChild.id.split("-")[1];
+                           
+                            if (corOutraPeca !== _cor) {
+                                posicoes[pos] = linha + "" + coluna;
+                                pos++;
+
+                            }
+                        }
+                    }
+            
+            j--;
+        }
+         var i = -1;
+        for (var j = 1; j < 8 ; j++){
+            
+            var linha = (Number(_linha) + i);
+            var coluna = (Number(_coluna) + j);
+            
+            if (linha > -1 && coluna > 0 && linha < 8 && coluna < 8) {
+                       var indice = linha + "" + coluna;
+                        var casa = $("#" + indice)[0];
+                        if (casa.childElementCount < 1) {
+                            posicoes[pos] = linha + "" + coluna;
+                            pos++;
+                        } else {
+                            
+                            var corOutraPeca = casa.firstElementChild.id.split("-")[1];
+                            if (corOutraPeca !== _cor) {
+                                posicoes[pos] = linha + "" + coluna;
+                                pos++;
+
+                            }
+                        }
+                    }
+            
+            i--;
+        }   
+         var i = -1;
+        for (var j = -1; j > -8 ; j--){
+            
+            var linha = (Number(_linha) + i);
+            var coluna = (Number(_coluna) + j);
+            
+            if (linha > -1 && coluna > -1 && linha < 8 && coluna < 8) {
+                       var indice = linha + "" + coluna;
+                        var casa = $("#" + indice)[0];
+                        if (casa.childElementCount < 1) {
+                            posicoes[pos] = linha + "" + coluna;
+                            pos++;
+                        } else {
+                            
+                            var corOutraPeca = casa.firstElementChild.id.split("-")[1];
+                            if (corOutraPeca !== _cor) {
+                                posicoes[pos] = linha + "" + coluna;
+                                pos++;
+
+                            }
+                        }
+                    }
+            
+            i--;
+        }   
+        return posicoes;
     };
 
     Rainha.inicioMovimento = function (event, ui) {
-        var linha = Number(ui.helper.context.parentNode.id.split(""[0]));
+        var linha = Number(ui.helper.context.parentNode.id.split("")[0]);
         var coluna = Number(ui.helper.context.parentNode.id.split("")[1]);
         var corPeca = ui.helper.context.id.split("-")[1];
 
@@ -49,10 +151,10 @@ var Rainha = function (_cor, _linha, _coluna) {
         var idPeca = ui.helper.context.id;
         var casa = $("#" + idCasa)[0];
         var removido;
-
-
+        
         if (casa.childElementCount > 0) {
             removido = casa.removeChild(casa.firstChild);
+
         }
 
         $("#" + idPeca).css({top: "8%", left: "10%"});
@@ -65,7 +167,7 @@ var Rainha = function (_cor, _linha, _coluna) {
     };
 
 
-    $("#" + _linha + "" + _coluna).append(imagem);
+   $("#" + _linha + "" + _coluna).append(imagem);
     $("#" + id).draggable({
         start: Rainha.inicioMovimento,
         revert: "invalid",
