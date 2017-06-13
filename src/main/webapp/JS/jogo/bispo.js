@@ -22,7 +22,7 @@ Bispo = function (_cor, _linha, _coluna){
     imagem.height = "50";
     imagem.class = "drag";
     
-    Bispo.movimento = function(_linha, _coluna){
+    Bispo.movimento = function(_linha, _coluna, _cor){
        var posicoes = new Array();
  
         var j = 1;
@@ -38,12 +38,14 @@ Bispo = function (_cor, _linha, _coluna){
                         if (casa.childElementCount < 1) {
                             posicoes[pos] = linha + "" + coluna;
                             pos++;
-                        } else {
+                         } else {
                             var corOutraPeca = casa.firstElementChild.id.split("-")[1];
-                            if (corOutraPeca !== _cor) {
+                            if (corOutraPeca === _cor){
+                                break;
+                            }else if (corOutraPeca !== _cor) {
                                 posicoes[pos] = linha + "" + coluna;
                                 pos++;
-
+                                break;
                             }
                         }
                     }
@@ -63,12 +65,14 @@ Bispo = function (_cor, _linha, _coluna){
                         if (casa.childElementCount < 1) {
                             posicoes[pos] = linha + "" + coluna;
                             pos++;
-                        } else {
+                         } else {
                             var corOutraPeca = casa.firstElementChild.id.split("-")[1];
-                            if (corOutraPeca !== _cor) {
+                            if (corOutraPeca === _cor){
+                                break;
+                            }else if (corOutraPeca !== _cor) {
                                 posicoes[pos] = linha + "" + coluna;
                                 pos++;
-
+                                break;
                             }
                         }
                     }
@@ -87,12 +91,14 @@ Bispo = function (_cor, _linha, _coluna){
                         if (casa.childElementCount < 1) {
                             posicoes[pos] = linha + "" + coluna;
                             pos++;
-                        } else {
+                        }else {
                             var corOutraPeca = casa.firstElementChild.id.split("-")[1];
-                            if (corOutraPeca !== _cor) {
+                            if (corOutraPeca === _cor){
+                                break;
+                            }else if (corOutraPeca !== _cor) {
                                 posicoes[pos] = linha + "" + coluna;
                                 pos++;
-
+                                break;
                             }
                         }
                     }
@@ -113,10 +119,12 @@ Bispo = function (_cor, _linha, _coluna){
                             pos++;
                         } else {
                             var corOutraPeca = casa.firstElementChild.id.split("-")[1];
-                            if (corOutraPeca !== _cor) {
+                            if (corOutraPeca === _cor){
+                                break;
+                            }else if (corOutraPeca !== _cor) {
                                 posicoes[pos] = linha + "" + coluna;
                                 pos++;
-
+                                break;
                             }
                         }
                     }
