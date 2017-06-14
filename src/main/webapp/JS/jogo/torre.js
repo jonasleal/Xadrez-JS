@@ -20,11 +20,11 @@ var Torre = function (_cor, _linha, _coluna) {
     imagem.height = "50";
     imagem.class = "drag";
 
-    Torre.movimento = function (_linha, _coluna) {
+    Torre.movimento = function (_linha, _coluna,_cor) {
 
         var posicoes = new Array();
         var pos = 0;
-        
+       
         //Movimento direita
         for (var i = 1; i < 8; i++){
             
@@ -134,43 +134,33 @@ var Torre = function (_cor, _linha, _coluna) {
     Torre.inicioMovimento = function (event, ui) {
         var linha = Number(ui.helper.context.parentNode.id.split("")[0]);
         var coluna = Number(ui.helper.context.parentNode.id.split("")[1]);
+        var corPeca = ui.helper.context.id.split("-")[1];
 
-
-        var movimentos = Torre.movimento(linha, coluna);
+        var movimentos = Torre.movimento(linha, coluna, corPeca);
 
         for (var i = 0; i < movimentos.length; i++) {
-            $("#" + movimentos[i]).droppable({scope: id, drop: Torre.jogada, disable: false});
+            $("#" + movimentos[i]).droppable({scope: id, drop: Torre.jogada});
         }
     };
 
     Torre.jogada = function (event, ui) {
         var idCasa = event.target.id;
         var idPeca = ui.helper.context.id;
-        var posicaoAnterior = $("#" + idPeca)[0].parentNode.id;
         var casa = $("#" + idCasa)[0];
-
         var removido;
 
         if (casa.childElementCount > 0) {
-            var corPeca = casa.firstChild.id.split("-")[1];
+            removido = casa.removeChild(casa.firstChild);
 
-            if (idPeca.split("-")[1] !== corPeca) {
-                removido = casa.removeChild(casa.firstChild);
-            } else {
-
-            }
         }
 
         $("#" + idPeca).css({top: "8%", left: "10%"});
         $("#" + idCasa).append($("#" + idPeca));
 
-        var linha = Number(posicaoAnterior.split("")[0]);
-        var coluna = Number(posicaoAnterior.split("")[1]);
-        var movimentos = Torre.movimento(linha, coluna);
-        for (var i = 0; i < movimentos.length; i++) {
-            $("#" + movimentos[i]).droppable("destroy");
+        var dropaveis = $(".ui-droppable");
+        for (var i = 0; i < dropaveis.length; i++) {
+            $("#" + dropaveis[i].id).droppable("destroy");
         }
-
     };
 
     $("#" + _linha + "" + _coluna).append(imagem);
