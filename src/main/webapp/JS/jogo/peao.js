@@ -58,6 +58,8 @@ Peao = function (_cor, _linha, _coluna) {
                 if (casa.childElementCount < 1) {
                     //Se não houver peça, define um movimento possivel
                     posicoes[i] = (linha + j) + "" + coluna;
+                }else{
+                    break;
                 }
             }
         }
