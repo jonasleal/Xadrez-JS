@@ -135,3 +135,4 @@ Peao = function (_cor, _linha, _coluna) {
     $("#" + id).css({top: "6%", left: "10%"});
 
 };
+

@@ -42,21 +42,25 @@ colocarPeca = function () {
 
     jogadorBranco[jogadorBranco.length] = new Rei(0,7,4);//Rei branco!
     
+    jogadorBranco[jogadorBranco.length] = new Rainha(0,7,3);//Rainha Branca
+    jogadorPreto[jogadorPreto.length] = new Rainha(1,0,3);//Rainha Preta
+    
+
     jogadorBranco[jogadorBranco.length] = new Torre(0,7,0);//Torre branca esquerda!
     jogadorPreto[jogadorPreto.length] = new Torre(1,0,0);//Torre preta na esquerda, se visão for de igual a torre esquerda, baixo a cima!
     
     jogadorPreto[jogadorPreto.length] = new Torre(1,0,7);
     jogadorBranco[jogadorBranco.length] = new Torre(0,7,7);
-    
+
     jogadorBranco[jogadorBranco.length] = new Bispo(0, 7, 2);
     jogadorBranco[jogadorBranco.length] = new Bispo(0, 7, 5);
     jogadorPreto[jogadorPreto.length] = new Bispo(1, 0, 2);
     jogadorPreto[jogadorPreto.length] = new Bispo(1, 0, 5);
     
-    cavalo1 = new Cavalo(0,7,1);
-    cavalo2 = new Cavalo(0,7,6);
-    cavalo3 = new Cavalo(1,0,1);
-    cavalo4 = new Cavalo(1,0,6);
+    jogadorBranco[jogadorBranco.length] = new Cavalo(0,7,1);
+    jogadorBranco[jogadorBranco.length] = new Cavalo(0,7,6);
+    jogadorPreto[jogadorPreto.length] = new Cavalo(1,0,1);
+    jogadorPreto[jogadorPreto.length] = new Cavalo(1,0,6);
     
     for(var i = 0; i < 8; i++){
        jogadorBranco[jogadorBranco.length] = new Peao(0,6,i); 

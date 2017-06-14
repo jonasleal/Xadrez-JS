@@ -21,86 +21,113 @@ var Torre = function (_cor, _linha, _coluna) {
     imagem.class = "drag";
 
     Torre.movimento = function (_linha, _coluna) {
+
         var posicoes = new Array();
-
-        //movimento semelhante ao peão
-            for (var i = -1, pos = 0; i < 8; i++) {
-            for (var j = 0; j < 8; j++) {
-                if (i !== 0 || j !== 0) {
-                    var linha = (Number(_linha) + i);
-                    var coluna = (Number(_coluna) + j);
-                    
-                    if (linha > -1 &&  linha < 8 ) {
-                        posicoes[pos] = linha + "" + coluna;
-                        pos--;
-                    }else if(coluna > -1 && coluna < 8){
-                        posicoes[pos] = linha + "" + coluna;
-                        pos--;
+        var pos = 0;
+        
+        //Movimento direita
+        for (var i = 1; i < 8; i++){
+            
+            var linha = (Number(_linha));
+            var coluna = (Number(_coluna) + i);
+            
+            if (linha > -1 && coluna > -1 && linha < 8 && coluna < 8) {
+                var indice = linha +""+ coluna;
+                var casa = $("#"+indice)[0];
+                if(casa.childElementCount < 1){
+                  posicoes[pos] = linha + ""+coluna;
+                  pos++;
+                }else{
+                    var corOutraPeca = casa.firstElementChild.id.split("-")[1];
+                    if(corOutraPeca === _cor){
+                        break;
+                    }else if (corOutraPeca !== _cor){
+                        posicoes[pos] = linha +""+coluna;
+                        pos++;
+                        break;
                     }
-
                 }
             }
+            
         }
-
-        //linhas maiores    
-        for (var i = -1, pos = 0; i < 8; i++) {
-            for (var j = 0; j < 8; j++) {
-                if (i !== 0 || j !== 0) {
-                    var linha = (Number(_linha) - i);
-                    var coluna = (Number(_coluna) - j);//ou +j
-
-                    if (linha > -1 && linha < 8) {
-                        posicoes[pos] = linha + "" + coluna;
+        //Movimento esquerda
+        for (var i = -1; i > -8; i--){
+            
+            var linha = (Number(_linha));
+            var coluna = (Number(_coluna) + i);
+            
+            if (linha > -1 && coluna > -1 && linha < 8 && coluna < 8) {
+                var indice = linha +""+ coluna;
+                var casa = $("#"+indice)[0];
+                if(casa.childElementCount < 1){
+                  posicoes[pos] = linha + ""+coluna;
+                  pos++;
+                }else{
+                    var corOutraPeca = casa.firstElementChild.id.split("-")[1];
+                    if(corOutraPeca === _cor){
+                        break;
+                    }else if (corOutraPeca !== _cor){
+                        posicoes[pos] = linha +""+coluna;
                         pos++;
-                    } else if (coluna > -1 && coluna < 8) {
-                        posicoes[pos] = linha + "" + (coluna + j);
-                        pos++;
-                    } else {
-                        posicoes[pos] = (linha + i) + "" + (coluna);
-                        pos++;
+                        break;
                     }
-
                 }
             }
-        }
-
-
-         //movimeto inverso 
-        for (var i = 8, pos = 0; i > -1; i--) {
-            for (var j = 8, pos = 0; j > -1; j--) {
-                if (i !== 0 || j !== 0) {
-                    var linha = (Number(_linha) + i);
-                    var coluna = (Number(_coluna) + j);
-
-                    if (linha > -1 && linha < 8) {
-                        posicoes[pos] = linha + "" + coluna;
-                        pos++;
-                    }else if(coluna > -1 && coluna < 8){
-                        posicoes[pos] = (linha - i) + "" + (coluna + j);
-                        pos++;
-                    }else{
-                        posicoes[pos] = (linha- i) + "" + (coluna - j);
-                        pos++;
-                    }
-
-                }
-            }
+            
         }
         
-        for (var i = 8, pos = 0; i > -1; i--) {
-            for (var j = 8, pos = 0; j > -1; j--) {
-                if (i !== 0 || j !== 0) {
-                    var linha = (Number(_linha) + i);
-                    var coluna = (Number(_coluna) + j);
-                    
-//                    if (linha > -1 && linha < 8) {
-//                        posicoes[pos] = linha + "" + coluna;
-//                        pos++;
-//                    }
+        //Movimento Cima
+        for (var i = -1; i > -8; i--){
+            
+            var linha = (Number(_linha)+ i);
+            var coluna = (Number(_coluna));
+            
+            if (linha > -1 && coluna > -1 && linha < 8 && coluna < 8) {
+                var indice = linha +""+ coluna;
+                var casa = $("#"+indice)[0];
+                if(casa.childElementCount < 1){
+                  posicoes[pos] = linha + ""+coluna;
+                  pos++;
+                }else{
+                    var corOutraPeca = casa.firstElementChild.id.split("-")[1];
+                    if(corOutraPeca === _cor){
+                        break;
+                    }else if (corOutraPeca !== _cor){
+                        posicoes[pos] = linha +""+coluna;
+                        pos++;
+                        break;
+                    }
                 }
             }
+            
         }
-
+        //Movimento Baixo
+        for (var i = 1; i < 8; i++){
+            
+            var linha = (Number(_linha)+ i);
+            var coluna = (Number(_coluna));
+            
+            if (linha > -1 && coluna > -1 && linha < 8 && coluna < 8) {
+                var indice = linha +""+ coluna;
+                var casa = $("#"+indice)[0];
+                if(casa.childElementCount < 1){
+                  posicoes[pos] = linha + ""+coluna;
+                  pos++;
+                }else{
+                    var corOutraPeca = casa.firstElementChild.id.split("-")[1];
+                    if(corOutraPeca === _cor){
+                        break;
+                    }else if (corOutraPeca !== _cor){
+                        posicoes[pos] = linha +""+coluna;
+                        pos++;
+                        break;
+                    }
+                }
+            }
+            
+        }
+        
+       
         return posicoes;
     };
 
