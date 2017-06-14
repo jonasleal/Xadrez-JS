@@ -20,27 +20,51 @@ Cavalo = function (_cor, _linha, _coluna) {
 
 Cavalo.movimento = function (_linha, _coluna, _cor) {
         var posicoes = new Array();
-        for (var i = -2, pos = 0; i < 3; i++) {
-            for (var j = -2; j < 3; j++) {
-                if (i !== 0 || j !== 0) {
-                    var linha = (Number(_linha) + i);
-                    var coluna = (Number(_coluna) + j);
-                    if (linha > -1 && coluna > -1 && linha < 8 && coluna < 8) {
-                        var indice = linha + "" + coluna;
-                        var casa = $("#" + indice)[0];
-                        if (casa.childElementCount < 1) {
-                            posicoes[pos] = linha + "" + coluna;
-                            pos++;
-                        } else {
-                            var corOutraPeca = casa.firstElementChild.id.split("-")[1];
-                            if (corOutraPeca !== _cor) {
-                                posicoes[pos] = linha + "" + coluna;
-                                pos++;
+       
+        var linha = new Array();
+        var coluna = new Array();
+        var pos = 0;
+        
+        
+        linha[0] = (Number(_linha) - 2);
+        coluna[0] = (Number(_coluna) - 1);
+        
+        linha[1] = (Number(_linha) - 2);
+        coluna[1] = (Number(_coluna) + 1);
+        
+        linha[2] = (Number(_linha) + 2);
+        coluna[2] = (Number(_coluna) - 1);
+        
+        linha[3] = (Number(_linha) + 2);
+        coluna[3] = (Number(_coluna) + 1);
+        
+        linha[4] = (Number(_linha) + 1);
+        coluna[4] = (Number(_coluna) - 2);
+        
+        linha[5] = (Number(_linha) - 1 );
+        coluna[5] = (Number(_coluna) - 2);
+        
+        linha[6] = (Number(_linha) - 1);
+        coluna[6] = (Number(_coluna) + 2);
+        
+        linha[7] = (Number(_linha) + 1);
+        coluna[7] = (Number(_coluna) + 2);
+        
+        for(var i = 0; i < 8; i++){
+            
+            if (linha[i] > -1 && coluna[i] > -1 && linha[i] < 8 && coluna[i] < 8) {
+                var indice = linha[i] + "" + coluna[i];
+                var casa = $("#" + indice)[0];
+                if (casa.childElementCount < 1) {
+                    posicoes[pos] = linha[i] + "" + coluna[i];
+                    pos++;
+                } else {
+                    var corOutraPeca = casa.firstElementChild.id.split("-")[1];
+                    if (corOutraPeca !== _cor) {
+                        posicoes[pos] = linha[i] + "" + coluna[i];
+                        pos++;
 
-                            }
-                        }
                     }
-
                 }
             }
         }
@@ -48,6 +72,7 @@ Cavalo.movimento = function (_linha, _coluna, _cor) {
     }
     ;
 
+    
     Cavalo.inicioMovimento = function (event, ui) {
         var linha = Number(ui.helper.context.parentNode.id.split("")[0]);
         var coluna = Number(ui.helper.context.parentNode.id.split("")[1]);
